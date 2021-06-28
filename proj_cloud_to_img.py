@@ -11,18 +11,18 @@ file_id = '000010'
 
 if __name__ == '__main__':
   # load point clouds
-  scan_dir = f'examples/kitti/velodyne/{file_id}.bin'
+  scan_dir = f'data/kitti/velodyne/{file_id}.bin'
   scan = np.fromfile(scan_dir, dtype=np.float32).reshape(-1, 4)
 
   # load image
-  img = np.array(io.imread(f'examples/kitti/image_2/{file_id}.png'), dtype=np.int32)
+  img = np.array(io.imread(f'data/kitti/image_2/{file_id}.png'), dtype=np.int32)
 
   # load labels
-  with open(f'examples/kitti/label_2/{file_id}.txt', 'r') as f:
+  with open(f'data/kitti/label_2/{file_id}.txt', 'r') as f:
     labels = f.readlines()
 
   # load calibration file
-  with open(f'examples/kitti/calib/{file_id}.txt', 'r') as f:
+  with open(f'data/kitti/calib/{file_id}.txt', 'r') as f:
     lines = f.readlines()
     P2 = np.array(lines[2].strip().split(' ')[1:], dtype=np.float32).reshape(3, 4)
     R0 = np.array(lines[4].strip().split(' ')[1:], dtype=np.float32).reshape(3, 3)
@@ -54,5 +54,5 @@ if __name__ == '__main__':
   # fig.patch.set_visible(False)
   plt.axis('off')
   plt.tight_layout()
-  plt.savefig(f'examples/proj_cloud_to_img/{file_id}.png', bbox_inches='tight')
+  plt.savefig(f'output/proj_cloud_to_img/{file_id}.png', bbox_inches='tight')
   plt.show()

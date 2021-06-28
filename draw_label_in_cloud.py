@@ -15,11 +15,11 @@ file_id = '000100'
 if __name__ == '__main__':
 
   # load point clouds
-  scan_dir = f'examples/semantic_kitti/velodyne/{file_id}.bin'
+  scan_dir = f'data/semantic_kitti/velodyne/{file_id}.bin'
   scan = np.fromfile(scan_dir, dtype=np.float32).reshape(-1, 4)
 
   # load labels
-  label = np.fromfile(f'examples/semantic_kitti/labels/{file_id}.label', dtype=np.int32).reshape((-1))
+  label = np.fromfile(f'data/semantic_kitti/labels/{file_id}.label', dtype=np.int32).reshape((-1))
   label = label & 0xFFFF  # semantic label in lower half
   label = np.array([mapping[l] for l in label])
 
@@ -33,5 +33,5 @@ if __name__ == '__main__':
   plot.module_manager.scalar_lut_manager.lut.table = colors
 
   mlab.view(azimuth=230, distance=50)
-  mlab.savefig(f'examples/proj_semantic_label_to_cloud/{file_id}.png')
+  mlab.savefig(f'output/proj_semantic_label_to_cloud/{file_id}.png')
   mlab.show()

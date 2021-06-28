@@ -9,11 +9,11 @@ file_id = '000010'
 if __name__ == '__main__':
 
   # load point clouds
-  scan_dir = f'examples/kitti/velodyne/{file_id}.bin'
+  scan_dir = f'data/kitti/velodyne/{file_id}.bin'
   scan = np.fromfile(scan_dir, dtype=np.float32).reshape(-1, 4)
 
   # load labels
-  label_dir = f'examples/kitti/label_2/{file_id}.txt'
+  label_dir = f'data/kitti/label_2/{file_id}.txt'
   with open(label_dir, 'r') as f:
     labels = f.readlines()
 
@@ -65,5 +65,5 @@ if __name__ == '__main__':
       draw(corners_3d[7], corners_3d[3])
 
   mlab.view(azimuth=230, distance=50)
-  mlab.savefig(f'examples/draw_3dbox_in_cloud/{file_id}.png')
+  mlab.savefig(f'output/draw_3dbox_in_cloud/{file_id}.png')
   mlab.show()
